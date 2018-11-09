@@ -2,6 +2,8 @@
 
 Spring Boot RESt API demo is demonstrating how to implement simple CRUD operations with a `User` entity.
 
+[![DepShield Badge](https://depshield.sonatype.org/badges/anuradhaneo/springboot-api-demo/depshield.svg)](https://depshield.github.io)
+
 ## What's inside 
 This project is based on the [Spring Boot](http://projects.spring.io/spring-boot/) project and uses these packages :
 - Maven
