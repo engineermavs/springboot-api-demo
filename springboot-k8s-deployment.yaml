@@ -23,7 +23,7 @@ spec:
       - name: ocirsecret
       containers:
       - name: springboot-api-demo
-        image: ${IPADD}:30700/springboot-api-demo:latest
+        image: REGIPADD/springboot-api-demo:latest
         ports:
         - containerPort: 8080
 ---
