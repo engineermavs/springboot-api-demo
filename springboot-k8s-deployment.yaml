@@ -19,6 +19,8 @@ spec:
       labels:
         app: springboot-api-demo
     spec:
+      imagePullSecrets:
+      - name: ocirsecret
       containers:
       - name: springboot-api-demo
         image: ${IPADD}:30700/springboot-api-demo:latest
