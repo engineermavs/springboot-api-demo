@@ -27,9 +27,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-        env:
-        - name: VERSION
-          value: "2.0"
+
 ---
 #service
 apiVersion: v1
