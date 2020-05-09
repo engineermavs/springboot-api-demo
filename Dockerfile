@@ -1,4 +1,5 @@
 FROM openjdk:8-jre-alpine
+ENV POM_VERSION
 WORKDIR /app
 COPY target/SpringBootRestApiExample-1.0.jar /app
-ENTRYPOINT ["java", "-jar", "SpringBootRestApiExample-2.0.jar"]
+ENTRYPOINT ["java", "-jar", "SpringBootRestApiExample-${POM_VERSION}.jar"]
