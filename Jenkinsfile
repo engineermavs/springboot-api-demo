@@ -61,6 +61,10 @@ pipeline {
             steps {
                 script {
                     echo "Build image with tag: ${env.BUILD_ID} and version: ${pom.version}"
+                    environment {
+                           VERSION = ${pom.version}
+                            }
+                    sh 'printenv'
                     dockerImage = docker.build("192.168.1.168:5000/springboot-api-demo:${env.BUILD_ID}", "--build-arg VERSION='${pom.version}' .")
                 }
             }
