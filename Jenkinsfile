@@ -45,7 +45,7 @@ pipeline {
                               nexusUrl: 'nexus:8081/nexus',
                               groupId: pom.groupId,
                               version: pom.version,
-                              repository: 'maven-snapshots',
+                              repository: 'spring-boot-api',
                               credentialsId: 'adop-admin',
                               artifacts: [
                                     [artifactId: pom.artifactId,
