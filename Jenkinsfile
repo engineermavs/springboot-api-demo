@@ -61,7 +61,7 @@ pipeline {
             steps {
                 script {
                     echo "Build image with tag: ${env.BUILD_ID}"
-                    dockerImage = docker.build("192.168.1.168:5000/java-k8s-cicd:${env.BUILD_ID}")
+                    dockerImage = docker.build("192.168.1.168:5000/springboot-api-demo:${env.BUILD_ID}")
                 }
             }
         }
@@ -85,8 +85,8 @@ pipeline {
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
                         sh '''
                             kubectl version
-                            sed -i 's/latest/'"${BUILD_ID}"'/g' java-k8s-cicd-k82-deployment.yaml
-                            kubectl --kubeconfig=${KUBECONFIG} apply -f java-k8s-cicd-k82-deployment.yaml
+                            sed -i 's/latest/'"${BUILD_ID}"'/g' springboot-k8s-deployment.yaml
+                            kubectl --kubeconfig=${KUBECONFIG} apply -f springboot-k8s-deployment.yaml
                         '''
                     }
                 }
@@ -95,7 +95,7 @@ pipeline {
         
         stage('Remove unused docker image') {
             steps {
-                sh "docker image rm 192.168.1.168:5000/java-k8s-cicd:${env.BUILD_ID}"
+                sh "docker image rm 192.168.1.168:5000/springboot-api-demo:${env.BUILD_ID}"
             }
         }
 
