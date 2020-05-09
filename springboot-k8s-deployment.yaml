@@ -20,7 +20,7 @@ spec:
         app: springboot-api-demo
     spec:
       imagePullSecrets:
-      - name: ocirsecret
+      - name: regcred
       containers:
       - name: springboot-api-demo
         image: 192.168.1.168:5000/springboot-api-demo:latest
