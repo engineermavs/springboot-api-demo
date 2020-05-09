@@ -81,10 +81,10 @@ pipeline {
             steps {
                     //sh "scp -o StrictHostKeyChecking=no deployment.yaml root@192.168.1.166:/home/"
                 script {
-                    
+                    echo "Build image with tag: ${env.BUILD_ID} and version: ${pom.version}"
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
                         sh '''
-                            sed -i 's/APPVERSION/'"${pom.version}"'/g' springboot-k8s-deployment.yaml
+                            sed -i 's/latest/'"${BUILD_ID}"'/g' springboot-k8s-deployment.yaml
                             kubectl --kubeconfig=${KUBECONFIG} apply -f springboot-k8s-deployment.yaml
                         '''
                     }
