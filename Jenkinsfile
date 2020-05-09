@@ -60,7 +60,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    echo "Build image with tag: ${env.BUILD_ID}"
+                    echo "Build image with tag: ${env.BUILD_ID} and version: ${version}"
                     dockerImage = docker.build("192.168.1.168:5000/springboot-api-demo:${env.BUILD_ID}")
                 }
             }
