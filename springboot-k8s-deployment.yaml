@@ -23,7 +23,7 @@ spec:
       - name: ocirsecret
       containers:
       - name: springboot-api-demo
-        image: REGIPADD/springboot-api-demo:latest
+        image: 192.168.1.168:5000/springboot-api-demo:latest
         ports:
         - containerPort: 8080
 ---
@@ -33,12 +33,11 @@ kind: Service
 metadata:
   name: springboot-api-demo
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: springboot-api-demo
   ports:
   - name: springboot-api-demo
     protocol: TCP
-    nodePort: 30500
     port: 8080
     targetPort: 8080
