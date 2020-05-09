@@ -4,6 +4,7 @@ metadata:
   name: springboot-api-demo
   labels:
     app: springboot-api-demo
+    version: APPVERSION
 spec:
   replicas: 2
   strategy:
