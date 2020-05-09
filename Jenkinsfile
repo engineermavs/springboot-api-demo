@@ -16,7 +16,7 @@ pipeline {
             steps {
                     withSonarQubeEnv(credentialsId: 'sonar', installationName: 'ADOP Sonar') {
                     sh 'mvn clean install'
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -Dsonar.projectKey=java-k8s-cicd -Dsonar.sources=src/main'
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -Dsonar.projectKey=springboot-api-demo -Dsonar.sources=src/main'
                 }
             }
         }
