@@ -24,9 +24,6 @@ spec:
       containers:
       - name: springboot-api-demo
         image: 192.168.1.168:5000/springboot-api-demo:latest
-        env:
-        - name: VERSION
-          value: 2.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
