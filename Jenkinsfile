@@ -88,7 +88,7 @@ pipeline {
                        sh "sed -i 's/APPVERSION/\"${pom.version}\"/g' springboot-k8s-deployment.yaml"
                        sh "kubectl --kubeconfig=${KUBECONFIG} apply -f springboot-k8s-deployment.yaml"
                        sh "chmod +x pod_check.sh"
-                       sh "./pod_check.sh springboot-api-demo ${pom.version} ${KUBECONFIG}"
+                       sh "./pod_check.sh ${pom.artifactId} ${pom.version} ${KUBECONFIG}"
                     }
                 }
             }          
