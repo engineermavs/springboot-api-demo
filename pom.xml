@@ -2,11 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.spring.boot.sample</groupId>
-	<artifactId>SpringBootRestApiExample</artifactId>
+	<artifactId>springbootrestapiexample</artifactId>
 	<version>3.0</version>
 	<packaging>jar</packaging>
 
-	<name>SpringBootRestApiExample</name>
+	<name>springbootrestapiexample</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
