@@ -61,7 +61,7 @@ pipeline {
             steps {
                 script {
                     echo "Build image with tag: ${env.BUILD_ID} and version: ${pom.version}"
-                    dockerImage = docker.build("192.168.1.168:5000/springboot-api-demo:${env.BUILD_ID}", "--build-arg VERSION='${pom.version}' .")
+                    dockerImage = docker.build("192.168.1.168:5000/${pom.artifactId}:${env.BUILD_ID}", "--build-arg VERSION='${pom.version}' .")
                 }
             }
         }
@@ -83,6 +83,7 @@ pipeline {
                 script {
                  
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
+                       sh "sed -i 's/ArtifactId/${pom.artifactId}/g' springboot-k8s-deployment.yaml"
                        sh "sed -i 's/latest/${BUILD_ID}/g' springboot-k8s-deployment.yaml"
                        sh "sed -i 's/APPVERSION/\"${pom.version}\"/g' springboot-k8s-deployment.yaml"
                        sh "kubectl --kubeconfig=${KUBECONFIG} apply -f springboot-k8s-deployment.yaml"
@@ -95,7 +96,7 @@ pipeline {
         
         stage('Remove unused docker image') {
             steps {
-                sh "docker image rm 192.168.1.168:5000/springboot-api-demo:${env.BUILD_ID}"
+                sh "docker image rm 192.168.1.168:5000/${pom.artifactId}:${env.BUILD_ID}"
             }
         }
 
