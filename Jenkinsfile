@@ -83,9 +83,7 @@ pipeline {
                 script {
                  
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
-                        sh '''
-                        echo "Build image with tag: ${env.BUILD_ID}"
-                        '''
+                       sh "sed -i "" "s|APPVERSION|'"${pom.version}"'|" springboot-k8s-deployment.yaml"
                     }
                 }
             }          
