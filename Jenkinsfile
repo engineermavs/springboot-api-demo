@@ -82,7 +82,7 @@ pipeline {
                     //sh "scp -o StrictHostKeyChecking=no deployment.yaml root@192.168.1.166:/home/"
                 script {
                  
-                    withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
+                    withCredentials([kubeconfigFile(credentialsId: 'k8s-config-uat', variable: 'KUBECONFIG')]) {
                        sh "sed -i 's/ArtifactId/${pom.artifactId}/g' springboot-k8s-deployment.yaml"
                        sh "sed -i 's/latest/${BUILD_ID}/g' springboot-k8s-deployment.yaml"
                        sh "sed -i 's/APPVERSION/\"${pom.version}\"/g' springboot-k8s-deployment.yaml"
