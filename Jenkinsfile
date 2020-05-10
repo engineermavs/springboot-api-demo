@@ -84,7 +84,8 @@ pipeline {
                  
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
                         sh '''
-                            echo "Build image with tag: ${env.BUILD_ID} and version: ${pom.version}"
+                            echo "Build image with tag: ${env.BUILD_ID}"
+                            
                         '''
                     }
                 }
