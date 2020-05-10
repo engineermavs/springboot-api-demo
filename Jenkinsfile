@@ -85,9 +85,6 @@ pipeline {
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
                         sh '''
                             echo "Build image with tag: ${env.BUILD_ID} and version: ${pom.version}"
-                            sed -i "" "s|APPVERSION|'"${env.BUILD_ID}"'|" springboot-k8s-deployment.yaml
-                            sed -i 's/latest/'"${env.BUILD_ID}"'/g' springboot-k8s-deployment.yaml
-                            kubectl --kubeconfig=${KUBECONFIG} apply -f springboot-k8s-deployment.yaml
                         '''
                     }
                 }
