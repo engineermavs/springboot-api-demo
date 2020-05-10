@@ -85,6 +85,7 @@ pipeline {
                     withCredentials([kubeconfigFile(credentialsId: 'k8s-config', variable: 'KUBECONFIG')]) {
                        sh "sed -i 's/latest/${BUILD_ID}/g' springboot-k8s-deployment.yaml"
                        sh "sed -i 's/APPVERSION/${pom.version}/g' springboot-k8s-deployment.yaml"
+                       sh "kubectl --kubeconfig=${KUBECONFIG} apply -f springboot-k8s-deployment.yaml"
                     }
                 }
             }          
