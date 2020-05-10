@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-api-demo
+  name: ArtifactId
   labels:
-    app: springboot-api-demo
+    app: ArtifactId
 spec:
   replicas: 2
   strategy:
@@ -13,18 +13,18 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: springboot-api-demo
+      app: ArtifactId
   template:
     metadata:
       labels:
-        app: springboot-api-demo
+        app: ArtifactId
         version: APPVERSION
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: springboot-api-demo
-        image: 192.168.1.168:5000/springboot-api-demo:latest
+      - name: ArtifactId
+        image: 192.168.1.168:5000/ArtifactId:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -34,13 +34,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-api-demo
+  name: ArtifactId
 spec:
   type: ClusterIP
   selector:
-    app: springboot-api-demo
+    app: ArtifactId
   ports:
-  - name: springboot-api-demo
+  - name: ArtifactId
     protocol: TCP
     port: 8080
     targetPort: 8080
