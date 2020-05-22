@@ -15,9 +15,14 @@
 	</parent>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<!-- Additionally, Please make sure that your JAVA_HOME is pointing to 
-			1.8 when building on commandline -->
+	<java.version>11</java.version>
+	<sourceEncoding>UTF-8</sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <sonar.language>java</sonar.language>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
 	</properties>
 
 	<dependencies>
