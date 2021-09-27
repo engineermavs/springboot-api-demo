@@ -20,24 +20,8 @@ pipeline {
             }
         }
     
-    stage('Check Specification') {
-      steps {
-        sh "chmod o+w *"
-        sh "docker-compose up --exit-code-from cucumber --build"
-      }
-    }
-  }
 
-  post {
-    always {
-      archive 'target/**/*.jar'
-      junit 'target/**/*.xml'
-      cucumber '**/*.json'
-    }
-  }
-
-
-  stage("Push image") {
+      stage("Push image") {
         steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
