@@ -3,7 +3,7 @@
 
 	<groupId>org.spring.boot.sample</groupId>
 	<artifactId>springbootrestapiexample</artifactId>
-	<version>3.0</version>
+	<version>${env.BUILD_ID}</version>
 	<packaging>jar</packaging>
 
 	<name>springbootrestapiexample</name>
