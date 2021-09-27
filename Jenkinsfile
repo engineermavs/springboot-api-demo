@@ -1,20 +1,50 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
+  agent any
+
+  tools {
+    maven 'mvn-3.5.2'
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn package'
+      }
     }
-    stages {
-        stage('Build') {
+    
+        stage("Build image") {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                script {
+                    myapp = docker.build("jaganthoutam/ledger-service:${env.BUILD_ID}")
+                }
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+    
+    stage('Check Specification') {
+      steps {
+        sh "chmod o+w *"
+        sh "docker-compose up --exit-code-from cucumber --build"
+      }
     }
+  }
+
+  post {
+    always {
+      archive 'target/**/*.jar'
+      junit 'target/**/*.xml'
+      cucumber '**/*.json'
+    }
+  }
+
+
+  stage("Push image") {
+        steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                            myapp.push("latest")
+                            myapp.push("${env.BUILD_ID}")
+                    }
+               }
+          }
+     }
 }
