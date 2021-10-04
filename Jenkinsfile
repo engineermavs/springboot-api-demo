@@ -16,15 +16,15 @@ pipeline {
     
         stage("Build image") {
             steps {
-                buildNum()
-                buildDocker()
+                step.buildNum()
+                step.buildDocker()
             }
         }
     
 
       stage("Push image") {
         steps {
-                pushDocker()
+                step.pushDocker()
           }
      }
  }
