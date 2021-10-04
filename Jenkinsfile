@@ -16,16 +16,20 @@ pipeline {
     
         stage("Build image") {
             steps {
+              script {
                 step.buildNum()
                 step.buildDocker()
+              }
             }
         }
     
 
       stage("Push image") {
         steps {
+          script {
                 step.pushDocker()
           }
+        }
      }
  }
   
