@@ -24,7 +24,7 @@ pipeline {
 
       stage("Push image") {
         steps {
-                pushDocker()
+                buildPushImage()
           }
      }
  }
