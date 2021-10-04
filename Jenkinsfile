@@ -17,14 +17,14 @@ pipeline {
         stage("Build image") {
             steps {
                 buildNum()
-                buildDocker()
+                docker.buildDocker()
             }
         }
     
 
       stage("Push image") {
         steps {
-                pushDocker()
+                docker.pushDocker()
           }
      }
  }
